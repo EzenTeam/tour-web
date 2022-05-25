@@ -29,58 +29,7 @@ const Meta = (props) => {
 
                 {/* Helmet 안에서 CSS 적용하기 */}
                 <style type="text/css">{`
-                    html,
-                    body {
-                        font-family: Verdana, sans-serif;
-                        font-size: 16px;
-                        line-height: 1.5;
-                        margin: 0;
-                    }
 
-                    h1, h2, h3, h4, h5, h6 {
-                        font-family: "Segoe UI",Arial,sans-serif;
-                        font-weight: 400;
-                        margin: 10px 0;
-                    }
-                    
-                    h3 {
-                        font-size: 24px;
-                    }
-
-                    p {
-                        display: block;
-                        margin-block-start: 1em;
-                        margin-block-end: 1em;
-                        margin-inline-start: 0px;
-                        margin-inline-end: 0px;
-                      }
-
-                    hr {
-                        width: 1500px;
-                        border-color: #ffffff;
-                    }
-
-                    ul, li {
-                        list-style: none;
-                    }
-
-                    html {
-                        box-sizing: border-box
-                      }
-
-                    *,
-                    *:before,
-                    *:after {
-                      box-sizing: inherit;
-                    }
-
-                    p {
-                        display: block;
-                        margin-block-start: 1em;
-                        margin-block-end: 1em;
-                        margin-inline-start: 0px;
-                        margin-inline-end: 0px;
-                      }
                 `}</style>
             </Helmet>
         </HelmetProvider>

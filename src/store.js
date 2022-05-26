@@ -1,10 +1,10 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-import KakaoSlice from "./slices/KakaoSlice";
+import TravelSlice from "./slices/TravelSlice";
 
 const store = configureStore({
     reducer:{
-        kakao : KakaoSlice
+        Travel : TravelSlice
     },
     middleware: (getDefaultMiddleware)=> getDefaultMiddleware({serializableCheck: false}),
     devTools: true

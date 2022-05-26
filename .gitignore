@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#팀원간 중복 작업물 github 업로드에 제외하기
+setupProxy.js
+Test_petTour.js
+PetTourSlice.js
+

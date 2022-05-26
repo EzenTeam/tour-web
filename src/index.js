@@ -1,23 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-/**/
- import App from './Test_loadTour';
+/***** 리덕스 모듈 테스트 파일 ******/
+//  import App from './Test_loadTour';
 //  import App from './Test_petTour';
 //  import App from './Test1';
-/*/
+
 import App from './App';
-/**/
 
 import { BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import GlbalStyles from './GlobalStyles';
+import GlobalStyles from './GlobalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GlbalStyles/>
+    <GlobalStyles/>
     <Provider store={store}>
       <BrowserRouter>
         <App />

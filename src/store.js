@@ -5,7 +5,7 @@ import LoadTourSlice from "./slices/LoadTourSlice";
 const store = configureStore({
     reducer:{
         loadTour: LoadTourSlice,
-
+        pettour : PetTourSlice,
     },
     middleware: (getDefaultMiddleware)=> getDefaultMiddleware({serializableCheck: false}),
     devTools: true

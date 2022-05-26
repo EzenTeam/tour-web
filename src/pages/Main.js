@@ -3,12 +3,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const MainContainer = styled.div`
-    position: relative;
-    top: 300px;
-
     .item-wrap{
-        margin: 50px auto;
-        width: 80%;
+        margin: 50px auto 0;
+        width: 90%;
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
@@ -17,15 +14,17 @@ const MainContainer = styled.div`
         .item{
             width: 400px;
             height: 550px;
+            margin-bottom: 50px;
             background-color: teal;
 
             img{
-                background-color: yellowgreen;
-                display: block;
+                width: 100%;
                 height: 70%;
             }
             .text{
                 height: 30%;
+                color: #fff;
+                text-align: center;
             }
         }
     }
@@ -37,7 +36,7 @@ const Main = () => {
             <div className="item-wrap">
                 <div className="item">
                     <NavLink to=''>
-                        <img src="" alt="" />
+                        <img src="http://via.placeholder.com/500?text=sample" alt="sample" />
                         <div className="text">
                             전체관광
                         </div>
@@ -45,7 +44,7 @@ const Main = () => {
                 </div>
                 <div className="item">
                     <NavLink to='/pettravel'>
-                        <img src="" alt="" />
+                        <img src="http://via.placeholder.com/500?text=sample" alt="sample" />
                         <div className="text">
                             반려동물동반
                         </div>
@@ -53,7 +52,7 @@ const Main = () => {
                 </div>
                 <div className="item">
                     <NavLink to='/loadtour'>
-                        <img src="" alt="" />
+                        <img src="http://via.placeholder.com/500?text=sample" alt="sample" />
                         <div className="text">
                             길여행_두루누비
                         </div>

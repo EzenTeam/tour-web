@@ -24,18 +24,7 @@ export const getLoadTourList = createAsyncThunk('LoadTourSlice/getLoadTourList',
 const LoadTourSlice = createSlice({
     name: 'loadTour',
     initialState:{
-        resultCode:null,
-        resultMsg: null,
-        numOfRows: null,
-        pageNo: null,
-        totalCount: null,
-        routeIdx: null,
-        themeNm: null,
-        linemsg: null,
-        themedescs: null,
-        brdDiv: null,
-        createdtime: null,
-        modifiedtime: null,
+        data:null,
         loading: null,
         error: null
     },
@@ -48,18 +37,7 @@ const LoadTourSlice = createSlice({
         },
         [getLoadTourList.fulfilled]: (state, {payload})=>{
             return {
-                resultCode:payload,
-                resultMsg: null,
-                numOfRows: null,
-                pageNo: null,
-                totalCount: null,
-                routeIdx: null,
-                themeNm: null,
-                linemsg: null,
-                themedescs: null,
-                brdDiv: null,
-                createdtime: null,
-                modifiedtime: null,
+                data:payload.data.response.body.items.item,
                 loading: false,
                 error: null
             }

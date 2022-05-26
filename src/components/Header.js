@@ -6,6 +6,10 @@ const HeaderContainer= styled.div`
     height: 300px;
     background-color: teal;
     text-align: center;
+
+    h1{
+        margin: 0;
+    }
 `;
 
 const Header = () => {

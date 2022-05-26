@@ -12,7 +12,6 @@ function App() {
   return (
     <>
       <Header/>
-      
       <Routes>
         <Route path='/' exact={true} element={<Main/>}/>
         <Route path='/loadtour' element={<LoadTour/>}/>

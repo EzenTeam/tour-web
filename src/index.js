@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom/client';
 //  import App from './Test1';
 
 import App from './App';
+import Meta from './Meta';
 
 import { BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -17,6 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyles/>
+    <Meta/>
     <Provider store={store}>
       <BrowserRouter>
         <App />

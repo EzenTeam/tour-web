@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const MainContainer = styled.div`
-    
+    position: relative;
+    top: 300px;
+
     .item-wrap{
         margin: 50px auto;
         width: 80%;
         display: flex;
+        flex-flow: row wrap;
         justify-content: space-evenly;
         align-items: center;
 
@@ -26,7 +29,6 @@ const MainContainer = styled.div`
             }
         }
     }
-    
 `;
 
 const Main = () => {
@@ -42,7 +44,7 @@ const Main = () => {
                     </NavLink>
                 </div>
                 <div className="item">
-                    <NavLink to=''>
+                    <NavLink to='/pettravel'>
                         <img src="" alt="" />
                         <div className="text">
                             반려동물동반

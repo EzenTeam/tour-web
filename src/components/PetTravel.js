@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadTour = () => {
+const PetTravel = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const LoadTour = () => {
     );
 };
 
-export default LoadTour;
+export default PetTravel;

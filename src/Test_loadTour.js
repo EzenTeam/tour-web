@@ -5,7 +5,7 @@ import { getLoadTourList } from './slices/LoadTourSlice';
 
 const Test_loadTour = memo(()=>{
     const dispatch = useDispatch();
-    const {data,loading, error} = useSelector((state)=>state.loadTour);
+    const {resultCode,resultMsg,numOfRows,pageNo,totalCount,routeIdx,themeNm,linemsg,themedescs,brdDiv,createdtime,modifiedtime,loading, error} = useSelector((state)=>state.loadTour);
 
     React.useEffect(()=>{
         dispatch(getLoadTourList())
@@ -16,7 +16,7 @@ const Test_loadTour = memo(()=>{
             error? JSON.stringify(error) : (
                 <>
                     <h1>data</h1>
-                    {JSON.stringify(data)}
+                    {JSON.stringify(resultCode)}
                 </>
             )
         )

@@ -47,19 +47,38 @@ const Table = styled.table`
     }
 `;
 
+const Selects = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+    span {
+        margin: 0 5px;
+    }
+`;
+
 const PetTravel = memo(()=>{
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state)=>state.pettravel);
+    const [partCode, setPartCode] = React.useState('PC03');
+    const [pageBlock, setPageBlock] = React.useState(10);
 
     React.useEffect(() => {
         dispatch(getPetTravel({
-            params: {
-                partCode: 'PC01',
-                page: 2,
-                pageBlock: 10,
-            }
+            partCode: partCode,
+            page: 1,
+            pageBlock: pageBlock,
         }))
-    },[dispatch])
+    },[dispatch, partCode, pageBlock])
+
+    const onChange = React.useCallback(e => {
+        e.preventDefault();
+        e.target.name === 'partCode' ? (
+            setPartCode(e.target.value)
+        ) : (
+            setPageBlock(e.target.value)
+        );
+    }, []);
 
     return(
         <>
@@ -69,6 +88,22 @@ const PetTravel = memo(()=>{
             ) : data && (
                 <PetTravelContainer>  
                     <h2>강원도 반려동물 동반 관광지 리스트</h2>
+                    <Selects>
+                        <span>카테고리</span>
+                        <select name='partCode' onChange={onChange}>
+                            <option value='PC03'>관광지</option>
+                            <option value='PC02'>숙박</option>
+                            <option value='PC01'>식음료</option>
+                            <option value='PC04'>체험</option>
+                            <option value='PC05'>동물병원</option>
+                        </select>
+                        <span>게시물 개수</span>
+                        <select name='pageBlock' onChange={onChange}>
+                            {[...new Array(5)].map((v, i) => {
+                                return <option key={i} value={(i+1)*10}>{(i+1)*10}개</option>
+                            })}
+                        </select>
+                    </Selects>
                     <Table>
                         <thead className='list-title'>
                             <tr>

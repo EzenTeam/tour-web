@@ -8,6 +8,10 @@ const HeaderContainer= styled.div`
     color: #fff;
     background-color: teal;
     text-align: center;
+
+    h1 {
+        padding: 70px 0 20px 0;
+    }
 `;
 
 const Header = () => {

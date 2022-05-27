@@ -7,6 +7,10 @@ const FooterContainer = styled.div`
     color: #fff;
     background-color: teal;
     text-align: center;
+
+    h2 {
+        padding-top: 30px;
+    }
 `;
 
 const Footer = () => {

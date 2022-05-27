@@ -16,9 +16,9 @@ const App = () => {
             <Routes>
                 <Route path="/" exact={true} element={<Main />} />
                 <Route path="/loadtour" element={<LoadTour />} />
-                <Route path="/pettour" element={<PetTravel />} />
+                <Route path="/pettravel" element={<PetTravel />} />
             </Routes>
-
+            
             <Footer />
         </>
     );

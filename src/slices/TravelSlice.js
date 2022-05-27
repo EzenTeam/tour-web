@@ -8,17 +8,17 @@ const API_URL = {
 const API_KEY = '25xx4Ka1f5ykn751v+LECo4HRPFEs02Gnpw9tMtmgyBL7RQQFjdF/yDAir2XKz/0Qbq43z30RvBpLtTMh887BQ==';
 
 /** 비동기 처리 함수 구현 */
-export const TravelList = createAsyncThunk("TravelSlice/TravelList", async (payload, { rejectWithValue }) => {
+export const TravelList = createAsyncThunk("TravelList/TravelSlice", async (payload, { rejectWithValue}) => {
     let result = null;
 
     try {
         result = await axios.get(API_URL[payload.api ? payload.api : 'web'], {
             params: {
-                page: payload.page ? payload.page : 1,
-                perPage: payload.perPage ? payload.perPage : 100,
-                totalCount: payload.totalCount,
-                currentCount: payload.currentCount,
-                matchCount: payload.matchCount,
+                page: 0,
+                perPage: 0,
+                totalCounte: 0,
+                currentCount: 0,
+                matchCount: 0,
             },
             headers: { Authorization: `Infuser ${API_KEY}` }
         });
@@ -46,7 +46,7 @@ const TravleSlice = createSlice ({
         },
         [TravelList.fulfilled]: (state, { payload }) => {
             return {
-                data: payload?.data?.data,
+                data: payload,
                 loading: false,
                 error: null
             }

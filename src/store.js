@@ -2,12 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import TravelSlice from "./slices/TravelSlice";
 
-import LoadTourSlice from './slices/LoadTourSlice';
-
 const store = configureStore({
     reducer:{
         loadTour: LoadTourSlice,
-
+        pettour : PetTourSlice,
         Travel : TravelSlice
     },
     middleware: (getDefaultMiddleware)=> getDefaultMiddleware({serializableCheck: false}),

@@ -43,31 +43,31 @@ const LoadTour = () => {
 
     React.useEffect(()=>{
         dispatch(getLoadTourList())
+        console.log('나왔다!')
     },[dispatch])
 
     return(
 
         <LoadTourContainer>
             {
-                JSON.stringify(data)
+                // JSON.stringify(data)
 
-                /********새로고침만하면 자꾸 data가 null오 뜨는중... */
-                // loading? "loading":(
-                //     error? JSON.stringify(error):(
-                //         <>
-                //             <h1>두루누비</h1>
-                //             {
-                //                 data.map((v,i)=>{
-                //                     return(
-                //                         <Collapsible key={i} trigger={v.themeNm}>
-                //                             <p>{v.themedesc}</p>
-                //                         </Collapsible>
-                //                     )
-                //                 })
-                //             }
-                //         </>
-                //     )
-                // )
+                loading? "loading":(
+                    error? JSON.stringify(error):(
+                        <>
+                            <h1>두루누비</h1>
+                            {
+                                data?.map((v,i)=>{
+                                    return(
+                                        <Collapsible key={i} trigger={v.themeNm}>
+                                            <p>{v.themedesc}</p>
+                                        </Collapsible>
+                                    )
+                                })
+                            }
+                        </>
+                    )
+                )
             }
         </LoadTourContainer>
     )

@@ -1,9 +1,11 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
+
 import { useSelector, useDispatch} from 'react-redux';
 import { getLoadTourList } from '../slices/LoadTourSlice';
+
 import styled from 'styled-components';
 import Collapsible from 'react-collapsible';
-import ErrorView from './ErrorView';
+import ErrorView from '../components/ErrorView';
 
 const LoadTourContainer = styled.div`
     width: 80%;
@@ -35,18 +37,16 @@ const LoadTourContainer = styled.div`
     }
 `;
 
-const LoadTour = () => {
-
+const LoadTour = memo(() => {
     const dispatch = useDispatch();
-    const {data,loading, error} = useSelector((state)=>state.loadTour);
+    const {data, loading, error} = useSelector((state)=>state.loadTour);
 
     React.useEffect(()=>{
         dispatch(getLoadTourList())
         // console.log('나왔다!')
     },[dispatch])
 
-    return(
-
+    return (
         <LoadTourContainer>
             {
                 // JSON.stringify(data)
@@ -55,7 +55,7 @@ const LoadTour = () => {
                         <>
                             <h1>두루누비</h1>
                             {
-                                data?.map((v,i)=>{
+                                data?.map((v, i)=>{
                                     return(
                                         <Collapsible key={i} trigger={v.themeNm}>
                                             <p dangerouslySetInnerHTML={{__html:v.themedesc}}></p>
@@ -68,7 +68,7 @@ const LoadTour = () => {
                 )
             }
         </LoadTourContainer>
-    )
-}
+    );
+});
 
 export default LoadTour;

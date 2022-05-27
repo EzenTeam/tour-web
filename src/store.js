@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import TravelSlice from "./slices/TravelSlice";
-
-import LoadTourSlice from './slices/LoadTourSlice';
+import PetTravelSlice from "./slices/PetTravelSlice";
+import LoadTourSlice from "./slices/LoadTourSlice";
 
 const store = configureStore({
     reducer:{
-        loadTour: LoadTourSlice,
-
-        Travel : TravelSlice
+        Travel : TravelSlice,
+        pettravel: PetTravelSlice,
+        loadTour: LoadTourSlice
     },
     middleware: (getDefaultMiddleware)=> getDefaultMiddleware({serializableCheck: false}),
     devTools: true

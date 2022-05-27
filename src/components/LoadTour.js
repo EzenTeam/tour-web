@@ -3,6 +3,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { getLoadTourList } from '../slices/LoadTourSlice';
 import styled from 'styled-components';
 import Collapsible from 'react-collapsible';
+import ErrorView from './ErrorView';
 
 const LoadTourContainer = styled.div`
     width: 80%;
@@ -10,18 +11,20 @@ const LoadTourContainer = styled.div`
     margin: auto;
 
     .Collapsible{
-        font-size: 30px;
-        border: 1px solid black;
+        font-size: 27px;
         
         //span태그로 구성되어 있음
         .Collapsible__trigger{
             box-sizing: border-box;
+            border-radius: 10px;
             display: block;
             width: 100%;
             height: 70px;
             line-height: 70px;
             padding-left: 20px;
             background-color: teal;
+            color: white;
+            margin: 5px;
         }
 
         p{
@@ -30,10 +33,6 @@ const LoadTourContainer = styled.div`
             line-height: 30px;
         }
     }
-
-    
-
-
 `;
 
 const LoadTour = () => {
@@ -43,7 +42,7 @@ const LoadTour = () => {
 
     React.useEffect(()=>{
         dispatch(getLoadTourList())
-        console.log('나왔다!')
+        // console.log('나왔다!')
     },[dispatch])
 
     return(
@@ -51,16 +50,15 @@ const LoadTour = () => {
         <LoadTourContainer>
             {
                 // JSON.stringify(data)
-
                 loading? "loading":(
-                    error? JSON.stringify(error):(
+                    error? <ErrorView error={error}/>:(
                         <>
                             <h1>두루누비</h1>
                             {
                                 data?.map((v,i)=>{
                                     return(
                                         <Collapsible key={i} trigger={v.themeNm}>
-                                            <p>{v.themedesc}</p>
+                                            <p dangerouslySetInnerHTML={{__html:v.themedesc}}></p>
                                         </Collapsible>
                                     )
                                 })

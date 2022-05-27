@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 /** 로딩바 컴포넌트 */
-// --> https://mhnpd.github.io/react-loader-spinner/
-import { Oval } from 'react-loader-spinner';
+// https://mhnpd.github.io/react-loader-spinner/
+import { MutatingDots } from "react-loader-spinner";
 
-/** 로딩바 뒤에 표시될 검은색 반투명 창 */
+/** 로딩바 뒤에 표시될 반투명 막 */
 const TransLayer = styled.div`
     position: fixed;
     left: 0;
@@ -17,39 +17,32 @@ const TransLayer = styled.div`
     height: 100%;
 `;
 
-const Spinner = ({ visible, color, secondaryColor , width, height }) => {
+const Spinner = ({ visible, color, width, height }) => {
     return (
-        <div>
-            { visible && (
+        <>
+            {visible && (
                 <TransLayer>
-                    <Oval
-                        ariaLabel="loading-indicator"
-                        color={color}
-                        secondaryColor={secondaryColor}
-                        width={width}
-                        height={height}
-                        strokeWidth={3}
-                        // 개발자정의 CSS 추가
+                    {/* 컴포넌트 설정 */}
+                    <MutatingDots
                         wrapperStyle={{
-                            position: 'absolute',
+                            position: "absolute",
                             zIndex: 10000,
-                            left: '50%',
-                            top: '50%',
-                            marginLeft: (-width/2),
-                            marginTop: (-height/2)
+                            left: "50%",
+                            top: "50%",
+                            marginLeft: -width / 2 + "px",
+                            marginTop: -height / 2 + "px",
                         }}
                     />
                 </TransLayer>
             )}
-        </div>
+        </>
     );
 };
 
 /** 기본값 정의 */
 Spinner.defaultProps = {
     visible: false,
-    color: 'white',
-    secondaryColor: 'grey',
+    color: '#06f',
     width: 100,
     height: 100
 };
@@ -58,10 +51,8 @@ Spinner.defaultProps = {
 Spinner.propTypes = {
     visible: PropTypes.bool.isRequired,
     color: PropTypes.string,
-    secondaryColor: PropTypes.string,
     width: PropTypes.number,
-    height: PropTypes.number
+    height: PropTypes.number,
 };
 
-// React.memo()를 사용하여 함수형 컴포넌트의 리렌더링 성능을 최적화
-export default React.memo(Spinner);
+export default Spinner;

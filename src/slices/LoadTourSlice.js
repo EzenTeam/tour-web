@@ -13,12 +13,11 @@ export const getLoadTourList = createAsyncThunk('LoadTourSlice/getLoadTourList',
             params:{
                 ServiceKey: API_KEY,
                 pageNo:payload.page? payload.page:1,
-                numOfRows:payload.numOfRows? payload.numOfRows:10,
                 MobileOs:'ETC',
                 MobileApp: 'AppTest'
             }
         })
-        console.log(result);
+        // console.log(result);
     } catch (error) {
         result = rejectWitValue(error.response);
     }

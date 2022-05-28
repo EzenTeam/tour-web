@@ -62,14 +62,14 @@ const LoadTour = memo(() => {
         dispatch(getLoadTourList({page:page}))
     },[dispatch,page])
     
-
+    // console.log(data);
     return (
         <LoadTourContainer>
             {
                 // JSON.stringify(data)
                 loading? "loading":(
                     error? <ErrorView error={error}/>:(
-                        <>
+                        <>  
                             <h1>전국 걷기여행길 </h1>
                             {
                                 data?.items.item.map((v, i)=>{
@@ -81,7 +81,9 @@ const LoadTour = memo(() => {
                                 })
                             }
                             <div className='pagination'>
-                            <Pagination page={page} setPage={setPage} total={data.totalCount} numOfLinks={10} />
+                            {
+                                data?.totalCount && <Pagination page={page} setPage={setPage} total={data.totalCount} numOfLinks={10} />
+                            }
                             </div>
                         </>
                     )

@@ -12,11 +12,13 @@ export const getLoadTourList = createAsyncThunk('LoadTourSlice/getLoadTourList',
         result = await axios.get(API_URL,{
             params:{
                 ServiceKey: API_KEY,
-                pageNo:1,
+                pageNo:payload.page? payload.page:1,
+                numOfRows:payload.numOfRows? payload.numOfRows:10,
                 MobileOs:'ETC',
                 MobileApp: 'AppTest'
             }
         })
+        console.log(result);
     } catch (error) {
         result = rejectWitValue(error.response);
     }
@@ -39,7 +41,7 @@ const LoadTourSlice = createSlice({
         },
         [getLoadTourList.fulfilled]: (state, {payload})=>{
             return {
-                data: payload?.data?.response?.body?.items?.item,
+                data: payload?.data?.response?.body,
                 loading: false,
                 error: null
             }

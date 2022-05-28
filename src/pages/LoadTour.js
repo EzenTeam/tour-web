@@ -4,16 +4,22 @@ import { useSelector, useDispatch} from 'react-redux';
 import { getLoadTourList } from '../slices/LoadTourSlice';
 
 import styled from 'styled-components';
+import Pagination from 'react-mui-pagination';
 import Collapsible from 'react-collapsible';
 import ErrorView from '../components/ErrorView';
 
 const LoadTourContainer = styled.div`
     width: 80%;
     min-height: 70vh;
-    margin: auto;
+    margin: 50px auto;
+
+    h1{
+        text-align: center;
+        margin: 50px 0;
+    }
 
     .Collapsible{
-        font-size: 27px;
+        font-size: 25px;
         
         //span태그로 구성되어 있음
         .Collapsible__trigger{
@@ -31,22 +37,31 @@ const LoadTourContainer = styled.div`
 
         p{
             padding: 0 20px;
-            font-size: 20px;
-            line-height: 30px;
+            /* font-size: 20px; */
+            line-height: 35px;
             margin: 20px 0;
             
         }
     }
+    .pagination{
+        margin: 30px 0;
+        text-align: center;
+    }   
 `;
 
 const LoadTour = memo(() => {
     const dispatch = useDispatch();
     const {data, loading, error} = useSelector((state)=>state.loadTour);
 
+    const [page, setMyPage] = React.useState(1); // this an example using hooks
+    const setPage = (e, p) => {
+    setMyPage(p);
+    }
+
     React.useEffect(()=>{
-        dispatch(getLoadTourList())
-        // console.log('나왔다!')
-    },[dispatch])
+        dispatch(getLoadTourList({page:page}))
+    },[dispatch,page])
+    
 
     return (
         <LoadTourContainer>
@@ -55,9 +70,9 @@ const LoadTour = memo(() => {
                 loading? "loading":(
                     error? <ErrorView error={error}/>:(
                         <>
-                            <h1>두루누비</h1>
+                            <h1>전국 걷기여행길 </h1>
                             {
-                                data?.map((v, i)=>{
+                                data?.items.item.map((v, i)=>{
                                     return(
                                         <Collapsible key={i} trigger={v.themeNm}>
                                             <p dangerouslySetInnerHTML={{__html:v.themedesc}}></p>
@@ -65,6 +80,9 @@ const LoadTour = memo(() => {
                                     )
                                 })
                             }
+                            <div className='pagination'>
+                            <Pagination page={page} setPage={setPage} total={data.totalCount} numOfLinks={10} />
+                            </div>
                         </>
                     )
                 )

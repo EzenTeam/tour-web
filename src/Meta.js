@@ -28,9 +28,7 @@ const Meta = (props) => {
                 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
 
                 {/* Helmet 안에서 CSS 적용하기 */}
-                <style type="text/css">{`
-
-                `}</style>
+                {/* <style type="text/css">{``}</style> */}
             </Helmet>
         </HelmetProvider>
     );

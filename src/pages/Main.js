@@ -25,6 +25,7 @@ const MainContainer = styled.div`
                 height: 30%;
                 color: #fff;
                 text-align: center;
+                line-height: 3;
             }
         }
     }

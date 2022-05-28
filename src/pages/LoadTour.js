@@ -33,6 +33,8 @@ const LoadTourContainer = styled.div`
             padding: 0 20px;
             font-size: 20px;
             line-height: 30px;
+            margin: 20px 0;
+            
         }
     }
 `;

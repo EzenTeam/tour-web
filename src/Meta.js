@@ -42,7 +42,7 @@ Meta.defaultProps = {
     title: "React Layout Demo",
     description: "React.js로 구현한 레이아웃 데모 페이지 입니다.",
     keywords: "React,layout,demo",
-    author: "Jaei",
+    author: "Jaei, Bona, Narae",
     // image: '기본이미지변수적용',
     url: window.location.href,
 };

@@ -1,29 +1,28 @@
 import React, { memo } from "react";
-
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import { getPetTravel } from "../slices/PetTravelSlice";
-
+// Select, Table UI style 라이브러리
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from "@material-ui/core";
+// 페이지네이션 라이브러리
+import Pagination from 'react-js-pagination';
 
-import PetTravelStyles from "../components/PetTravelStyles";
 import Spinner from "../components/Spinner";
 import ErrorView from "../components/ErrorView";
+import PetTravelStyles from "../components/PetTravelStyles";
 
+// 스타일 커스텀 (@material-ui 공식 홈페이지 예제 참조)
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
-    table: {
-        minWidth: 700,
-    },
 }));
-
 const StyledTableCell = withStyles(() => ({
     head: {
-        backgroundColor: "teal",
+        backgroundColor: "#337ab7",
         color: "white",
         textAlign: "center",
         fontWeight: "bold",
@@ -34,26 +33,38 @@ const StyledTableCell = withStyles(() => ({
 }))(TableCell);
 
 const PetTravel = memo(() => {
+    // redux
     const dispatch = useDispatch();
-    const { data, loading, error } = useSelector((state) => state.pettravel);
-
+    const { resultList, totalCount, loading, error } = useSelector((state) => state.pettravel);
+    // 스타일 커스텀 가져오기
     const classes = useStyles();
+    // 분야 코드
     const [partCode, setPartCode] = React.useState("PC03");
+    // 페이지 번호
+    const [page, setPage] = React.useState(1);
+    // 한 페이지 결과 수 (1~50 이외의 값은 10으로 처리)
     const [pageBlock, setPageBlock] = React.useState(10);
 
+    // redux dispatch --> Ajax 호출
     React.useEffect(() => {
         dispatch(
             getPetTravel({
                 partCode: partCode,
-                page: 1,
+                page: page,
                 pageBlock: pageBlock,
             })
         );
-    }, [dispatch, partCode, pageBlock]);
+    }, [dispatch, partCode, page, pageBlock]);
 
+    // 드롭다운 선택값이 변경될 때 발생될 이벤트
     const onChange = React.useCallback((e) => {
         e.preventDefault();
         e.target.name === "partCode" ? setPartCode(e.target.value) : setPageBlock(e.target.value);
+    }, []);
+
+    // 페이지가 변경될 때 발생될 이벤트
+    const onPageChange = React.useCallback((page) => {
+        setPage(page);
     }, []);
 
     return (
@@ -62,35 +73,31 @@ const PetTravel = memo(() => {
             {error ? (
                 <ErrorView error={error} />
             ) : (
-                data && (
-                    <PetTravelStyles>
-                        <h2>강원도 반려동물 동반 관광지 리스트</h2>
-                        <div className="select-wrap">
-                            <FormControl className={classes.formControl}>
-                                <InputLabel id="partCodeLabel">카테고리</InputLabel>
-                                <Select labelId="partCodeLabel" id="partCodeSelect" value={partCode} name="partCode" onChange={onChange}>
-                                    <MenuItem value={"PC03"}>관광지</MenuItem>
-                                    <MenuItem value={"PC02"}>숙박</MenuItem>
-                                    <MenuItem value={"PC01"}>식음료</MenuItem>
-                                    <MenuItem value={"PC04"}>체험</MenuItem>
-                                    <MenuItem value={"PC05"}>동물병원</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel id="pageBlockLabel">게시물 개수</InputLabel>
-                                <Select labelId="pageBlockLabel" id="pageBlockSelect" value={pageBlock} name="pageBlock" onChange={onChange}>
-                                    {[...new Array(5)].map((v, i) => {
-                                        return (
-                                            <MenuItem key={i} value={(i + 1) * 10}>
-                                                {(i + 1) * 10}개
-                                            </MenuItem>
-                                        );
-                                    })}
-                                </Select>
-                            </FormControl>
-                        </div>
+                <PetTravelStyles>
+                    <h2>강원도 반려동물 동반 관광지 리스트</h2>
+                    <div className="select-wrap">
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="partCodeLabel">카테고리</InputLabel>
+                            <Select labelId="partCodeLabel" id="partCodeSelect" value={partCode} name="partCode" onChange={onChange}>
+                                <MenuItem value={"PC03"}>관광지</MenuItem>
+                                <MenuItem value={"PC02"}>숙박</MenuItem>
+                                <MenuItem value={"PC01"}>식음료</MenuItem>
+                                <MenuItem value={"PC04"}>체험</MenuItem>
+                                <MenuItem value={"PC05"}>동물병원</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="pageBlockLabel">게시물 개수</InputLabel>
+                            <Select labelId="pageBlockLabel" id="pageBlockSelect" value={pageBlock} name="pageBlock" onChange={onChange}>
+                                {[...new Array(5)].map((v, i) => {
+                                    return <MenuItem key={i} value={(i + 1) * 10}>{(i + 1) * 10}개</MenuItem>;
+                                })}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    {resultList && (
                         <TableContainer component={Paper}>
-                            <Table className={classes.table}>
+                            <Table>
                                 <TableHead>
                                     <TableRow>
                                         <StyledTableCell>카테고리</StyledTableCell>
@@ -101,7 +108,7 @@ const PetTravel = memo(() => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {data[0].resultList.map((v, i) => {
+                                    {resultList.map((v, i) => {
                                         return (
                                             <TableRow key={v.contentSeq}>
                                                 <StyledTableCell>{v.partName}</StyledTableCell>
@@ -115,8 +122,19 @@ const PetTravel = memo(() => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    </PetTravelStyles>
-                )
+                    )}
+                    {totalCount && (
+                        <Pagination
+                        activePage={page}
+                        itemsCountPerPage={pageBlock}
+                        totalItemsCount={totalCount}
+                        pageRangeDisplayed={Math.ceil(totalCount/pageBlock)}
+                        prevPageText="‹"
+                        nextPageText="›"
+                        onChange={onPageChange}
+                        />
+                    )}
+                </PetTravelStyles>
             )}
         </>
     );

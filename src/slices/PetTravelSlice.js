@@ -24,9 +24,10 @@ export const getPetTravel = createAsyncThunk('PetTravelSlice/getPetTravel', asyn
 const PetTravelSlice = createSlice({
     name: 'pettravel',
     initialState: {
-        data: null,         
+        resultList: null,         
+        totalCount: null,         
         loading: false,     
-        error: null        
+        error: null,
     },
     reducers: {},
     extraReducers: {
@@ -35,14 +36,16 @@ const PetTravelSlice = createSlice({
         },
         [getPetTravel.fulfilled]: (state, { payload }) => {
             return {
-                data: payload?.data,
+                resultList: payload?.data[0].resultList,         
+                totalCount: payload?.data[0].totalCount,   
                 loading: false,
                 error: null
             }
         },
         [getPetTravel.rejected]: (state, { payload }) => {
             return {
-                data: payload?.data,
+                resultList: null,         
+                totalCount: null,
                 loading: false,
                 error: {
                     code: payload?.status ? payload.status : 500,

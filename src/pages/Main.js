@@ -49,7 +49,7 @@ const Main = () => {
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                        <a>
+                        <a href="!#">
                             <Icon name="user" />
                             22 Friends
                         </a>
@@ -75,7 +75,7 @@ const Main = () => {
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                        <a>
+                        <a href="!#">
                             <Icon name="user" />
                             22 Friends
                         </a>
@@ -101,7 +101,7 @@ const Main = () => {
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                        <a>
+                        <a href="!#">
                             <Icon name="user" />
                             22 Friends
                         </a>

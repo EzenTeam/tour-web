@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_URL = {
-    web: 'https://api.odcloud.kr/api/15003416/v1/uddi:a635e6c7-82cf-4714-b002-c7cf4cb20121_201609071527'
+    travel: 'https://api.odcloud.kr/api/15003416/v1/uddi:a635e6c7-82cf-4714-b002-c7cf4cb20121_201609071527'
 }
 
 const API_KEY = '25xx4Ka1f5ykn751v+LECo4HRPFEs02Gnpw9tMtmgyBL7RQQFjdF/yDAir2XKz/0Qbq43z30RvBpLtTMh887BQ==';
@@ -12,13 +12,10 @@ export const TravelList = createAsyncThunk("TravelSlice/TravelList", async (payl
     let result = null;
 
     try {
-        result = await axios.get(API_URL[payload.api ? payload.api : 'web'], {
+        result = await axios.get(API_URL[payload.api ? payload.api : 'travel'], {
             params: {
                 page: payload.page ? payload.page : 1,
-                perPage: payload.perPage ? payload.perPage : 100,
-                totalCount: payload.totalCount,
-                currentCount: payload.currentCount,
-                matchCount: payload.matchCount,
+                perPage: payload.perPage ? payload.perPage : 120,
             },
             headers: { Authorization: `Infuser ${API_KEY}` }
         });

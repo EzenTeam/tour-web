@@ -1,26 +1,22 @@
 import React, { memo } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { TravelList } from './slices/TravelSlice';
+import { KoreaTravelList } from './slices/KoreaTravelSlice';
 
 const Test = memo(() => {
     const dispatch = useDispatch();
-    const { meta, data, loading, error } = useSelector((state) => state.Travel);
+    const { data, loading, error } = useSelector((state) => state.koreatravel);
 
     React.useEffect(() => {
-        dispatch(TravelList({
-        }))
+        dispatch(KoreaTravelList())
     }, [dispatch]);
 
     return (
         loading ? "loading..." : (
             error ? JSON.stringify(error) : (
-                <>
-                    <h1>meta</h1>
-                    {JSON.stringify(meta)}
-                    <h1>data</h1>
+                <div>
                     {JSON.stringify(data)}
-                </>
+                </div>
             )
         )
     );

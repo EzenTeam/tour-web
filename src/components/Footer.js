@@ -5,18 +5,18 @@ const FooterContainer = styled.div`
     width: 100%;
     height: 100px;
     color: #fff;
-    background-color: teal;
+    background-color: #337ab7;
     text-align: center;
 
-    h2 {
-        padding-top: 30px;
+    p {
+        padding-top: 40px;
     }
 `;
 
 const Footer = () => {
     return (
         <FooterContainer>
-            <h2>Footer</h2>
+            <p>API 연동 * 리액트 라이브러리</p>
         </FooterContainer>
     );
 };

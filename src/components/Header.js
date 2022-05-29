@@ -2,25 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+import Plane from '../img/flight.png';
+
 const HeaderContainer= styled.div`
     width: 100%;
-    height: 300px;
+    height: 220px;
     color: #fff;
-    background-color: teal;
+    background-color: #6BC4FF;
     text-align: center;
 
-    h1 {
-        padding: 70px 0 20px 0;
+    img {
+        padding-top: 40px;
+        width: 60px;
     }
 `;
 
 const Header = () => {
     return (
         <HeaderContainer>
-            <h1>여행지 안내 사이트</h1>
             <NavLink to='/'>
-                <img src="http://via.placeholder.com/100?text=logo" alt="sample-logo" />
+                <img src={`${Plane}`} alt="sample-logo" />
             </NavLink>
+            <h1>29 Tour</h1>
         </HeaderContainer>
     );
 };

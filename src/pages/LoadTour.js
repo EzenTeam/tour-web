@@ -30,7 +30,7 @@ const LoadTourContainer = styled.div`
             height: 70px;
             line-height: 70px;
             padding-left: 20px;
-            background-color: teal;
+            background-color: #337ab7;
             color: white;
             margin: 5px;
         }

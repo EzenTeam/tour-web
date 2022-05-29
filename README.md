@@ -10,6 +10,9 @@
 ## 라이브러리 활용
 - react-collapsible (https://openbase.com/js/react-collapsible)
 - @material-ui/core (https://v4.mui.com/getting-started/installation/)
+- @material-ui/icons (https://mui.com/material-ui/material-icons/)
+- react-mui-pagination (https://www.npmjs.com/package/react-mui-pagination)
+- react-js-pagination (https://www.npmjs.com/package/react-js-pagination)
 
 ## 트리구조
 ```

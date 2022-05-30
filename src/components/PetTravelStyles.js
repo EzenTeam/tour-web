@@ -32,46 +32,6 @@ const PetTravelStyles = styled.div`
             font-weight: bold;
         }
     }
-
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
-        
-        li {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1rem;
-            border-radius: 50%;
-            margin: 0 3px;
-
-            &.active {
-                background-color: #337ab7;
-
-                a {
-                    color: white;
-                }
-            }
-
-            &:hover {
-                background: rgba(51, 122, 183, 0.5);
-
-                a {
-                    color: white;
-                }
-            }
-
-            a {
-                text-decoration: none;
-                color: #337ab7;
-                font-size: 1rem;
-            }
-        }
-    }
 `;
 
 export default PetTravelStyles;

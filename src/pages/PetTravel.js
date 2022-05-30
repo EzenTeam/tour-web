@@ -6,14 +6,12 @@ import { getPetTravel } from "../slices/PetTravelSlice";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from "@material-ui/core";
-// 페이지네이션 라이브러리
-import Pagination from 'react-js-pagination';
-
+// 컴포넌트
 import Spinner from "../components/Spinner";
 import ErrorView from "../components/ErrorView";
 import PetTravelStyles from "../components/PetTravelStyles";
 
-// 스타일 커스텀 (@material-ui 공식 홈페이지 예제 참조)
+// 스타일 커스텀 --> [참고] @material-ui 공식 홈페이지 예제
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
@@ -40,31 +38,22 @@ const PetTravel = memo(() => {
     const classes = useStyles();
     // 분야 코드
     const [partCode, setPartCode] = React.useState("PC03");
-    // 페이지 번호
-    const [page, setPage] = React.useState(1);
     // 한 페이지 결과 수 (1~50 이외의 값은 10으로 처리)
     const [pageBlock, setPageBlock] = React.useState(10);
 
     // redux dispatch --> Ajax 호출
     React.useEffect(() => {
-        dispatch(
-            getPetTravel({
-                partCode: partCode,
-                page: page,
-                pageBlock: pageBlock,
-            })
-        );
-    }, [dispatch, partCode, page, pageBlock]);
+        dispatch(getPetTravel({
+            partCode: partCode,
+            page: 1,
+            pageBlock: pageBlock,
+        }));
+    }, [dispatch, partCode, pageBlock]);
 
     // 드롭다운 선택값이 변경될 때 발생될 이벤트
     const onChange = React.useCallback((e) => {
         e.preventDefault();
         e.target.name === "partCode" ? setPartCode(e.target.value) : setPageBlock(e.target.value);
-    }, []);
-
-    // 페이지가 변경될 때 발생될 이벤트
-    const onPageChange = React.useCallback((page) => {
-        setPage(page);
     }, []);
 
     return (
@@ -122,17 +111,6 @@ const PetTravel = memo(() => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    )}
-                    {totalCount && (
-                        <Pagination
-                        activePage={page}
-                        itemsCountPerPage={pageBlock}
-                        totalItemsCount={totalCount}
-                        pageRangeDisplayed={Math.ceil(totalCount/pageBlock)}
-                        prevPageText="‹"
-                        nextPageText="›"
-                        onChange={onPageChange}
-                        />
                     )}
                 </PetTravelStyles>
             )}

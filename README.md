@@ -12,6 +12,7 @@
 - @material-ui/core (https://v4.mui.com/getting-started/installation/)
 - @material-ui/icons (https://mui.com/material-ui/material-icons/)
 - react-mui-pagination (https://www.npmjs.com/package/react-mui-pagination)
+- react-js-pagination (https://www.npmjs.com/package/react-js-pagination)
 - semantic-ui-react (Main) (https://react.semantic-ui.com/views/card)
 - semantic-ui-react (Table) (https://react.semantic-ui.com/collections/table)
 
